@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Services Price Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .total {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Photography Services Price Calculator</h1>
+
+    <h2>Style</h2>
+    <table>
+        <tr>
+            <th>Tick (v)</th>
+            <th>Style</th>
+            <th>Standard Price ($)</th>
+        </tr>
+        <tr>
+            <td><input type="radio" name="style" id="hdrPhoto" value="0.6"></td>
+            <td>HDR Photo</td>
+            <td>0.6</td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="style" id="manualBlending" value="0.7"></td>
+            <td>Multiple Manual Blending</td>
+            <td>0.7</td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="style" id="flambientLV1" value="0.8"></td>
+            <td>Flambient LV1</td>
+            <td>0.8</td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="style" id="flambientLV2" value="1.2"></td>
+            <td>Flambient LV2</td>
+            <td>1.2</td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="style" id="flambientLV3" value="1.8"></td>
+            <td>Flambient LV3</td>
+            <td>1.8</td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="style" id="editorialStyle" value="1.0"></td>
+            <td>Editorial Style</td>
+            <td>1.0</td>
+        </tr>
+    </table>
+
+    <h2>Add-ons</h2>
+    <table>
+        <tr>
+            <th>Tick (v)</th>
+            <th>Add-on</th>
+            <th>Add-on Price ($)</th>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="windowMasking" value="0.1"></td>
+            <td>Window masking</td>
+            <td>0.1</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="indoorSky" value="0.1"></td>
+            <td>Indoor sky replacements</td>
+            <td>0.1</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="resize" value="0.1"></td>
+            <td>Resize</td>
+            <td>0.1</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="addLogo" value="0.1"></td>
+            <td>Add logo</td>
+            <td>0.1</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="virtualLight" value="0.1"></td>
+            <td>Virtual light</td>
+            <td>0.1</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="addTV" value="0.1"></td>
+            <td>Add TV screen (black out) / Add fire</td>
+            <td>0.1</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="makeWhite" value="0.25"></td>
+            <td>Make ceiling, wall, things, etc white</td>
+            <td>0.25</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="flashShadow" value="0.25"></td>
+            <td>Flash shadow removals</td>
+            <td>0.25</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="lawnPatching" value="0.25"></td>
+            <td>Lawn patching, make green grass</td>
+            <td>0.25</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="smallObjects" value="0.5"></td>
+            <td>Small objects removals</td>
+            <td>0.5</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" id="wiresRemoval" value="0.5"></td>
+            <td>Wires removal, bin, holes, etc.</td>
+            <td>0.5</td>
+        </tr>
+    </table>
+
+    <button class="button" onclick="calculatePrice()">Calculate Price</button>
+
+    <div class="total" id="totalPrice">Total per image: $0.00</div>
+
+    <script>
+        function calculatePrice() {
+            let totalPrice = 0;
+
+            // Calculate Style Prices (only one can be selected)
+            let stylePrice = document.querySelector('input[name="style"]:checked');
+            if (stylePrice) {
+                totalPrice += parseFloat(stylePrice.value);
+            }
+
+            // Calculate Add-on Prices
+            if (document.getElementById("windowMasking").checked) {
+                totalPrice += parseFloat(document.getElementById("windowMasking").value);
+            }
+            if (document.getElementById("indoorSky").checked) {
+                totalPrice += parseFloat(document.getElementById("indoorSky").value);
+            }
+            if (document.getElementById("resize").checked) {
+                totalPrice += parseFloat(document.getElementById("resize").value);
+            }
+            if (document.getElementById("addLogo").checked) {
+                totalPrice += parseFloat(document.getElementById("addLogo").value);
+            }
+            if (document.getElementById("virtualLight").checked) {
+                totalPrice += parseFloat(document.getElementById("virtualLight").value);
+            }
+            if (document.getElementById("addTV").checked) {
+                totalPrice += parseFloat(document.getElementById("addTV").value);
+            }
+            if (document.getElementById("makeWhite").checked) {
+                totalPrice += parseFloat(document.getElementById("makeWhite").value);
+            }
+            if (document.getElementById("flashShadow").checked) {
+                totalPrice += parseFloat(document.getElementById("flashShadow").value);
+            }
+            if (document.getElementById("lawnPatching").checked) {
+                totalPrice += parseFloat(document.getElementById("lawnPatching").value);
+            }
+            if (document.getElementById("smallObjects").checked) {
+                totalPrice += parseFloat(document.getElementById("smallObjects").value);
+            }
+            if (document.getElementById("wiresRemoval").checked) {
+                totalPrice += parseFloat(document.getElementById("wiresRemoval").value);
+            }
+
+            // Display the total price
+            document.getElementById("totalPrice").innerText = "Total per image: $" + totalPrice.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
